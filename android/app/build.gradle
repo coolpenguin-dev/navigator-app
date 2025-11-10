@@ -97,11 +97,16 @@ android {
     }
     signingConfigs {
         release {
-            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-                storeFile file(MYAPP_UPLOAD_STORE_FILE)
-                storePassword MYAPP_UPLOAD_STORE_PASSWORD
-                keyAlias MYAPP_UPLOAD_KEY_ALIAS
-                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            def ksPath       = System.getenv('ANDROID_NAVIGATOR_APP_UPLOAD_STORE_FILE')       ?: project.findProperty('ANDROID_NAVIGATOR_APP_UPLOAD_STORE_FILE')
+            def ksPass       = System.getenv('ANDROID_NAVIGATOR_APP_UPLOAD_STORE_PASSWORD')   ?: project.findProperty('ANDROID_NAVIGATOR_APP_UPLOAD_STORE_PASSWORD')
+            def keyAliasName = System.getenv('ANDROID_NAVIGATOR_APP_UPLOAD_KEY_ALIAS')        ?: project.findProperty('ANDROID_NAVIGATOR_APP_UPLOAD_KEY_ALIAS')
+            def keyPass      = System.getenv('ANDROID_NAVIGATOR_APP_UPLOAD_KEY_PASSWORD')     ?: project.findProperty('ANDROID_NAVIGATOR_APP_UPLOAD_KEY_PASSWORD')
+
+            if (ksPath && ksPass && keyAliasName && keyPass) {
+                storeFile file(ksPath)
+                storePassword ksPass
+                keyAlias keyAliasName
+                keyPassword keyPass
             }
         }
         debug {
@@ -124,6 +129,9 @@ android {
             shrinkResources false
         }
     }
+    // lintOptions {
+    //     disable 'ResourceCycle'
+    // }
 }
 
 dependencies {
@@ -142,7 +150,7 @@ dependencies {
     // Splash screen
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha02' 
 
-    if (hermesEnabled.toBoolean()) {
+    if (project.hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor

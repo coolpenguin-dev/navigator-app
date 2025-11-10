@@ -71,6 +71,8 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+android/fastlane
+ios/fastlane
 
 # Bundle artifact
 *.jsbundle
@@ -84,6 +86,7 @@ ios/tmp.xcconfig
 # Credentials/ Config
 #
 android/app/google-services.json
+android/app/play-store-credentials.json
 
 # Navigator assets/configurations
 #
