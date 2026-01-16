@@ -6,7 +6,7 @@ Open source order managemenr, geolocation tracking & navigation app for Fleetbas
 </p>
 
 <p align="center">
-  <a href="https://fleetbase.io">fleetbase.io</a> | <a href="https://twitter.com/fleetbase_io">@fleetbase_io</a> | <a href="https://discord.gg/fjP4sReEvH">Discord</a>
+  <a href="https://fleetbase.io">fleetbase.io</a>
 </p>
 
 <p align="center">
